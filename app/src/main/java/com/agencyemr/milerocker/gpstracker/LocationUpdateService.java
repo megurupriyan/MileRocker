@@ -221,6 +221,7 @@ public class LocationUpdateService extends Service implements
         url += "&DeviceID=" + URLEncoder.encode(locationTracker.getImei());
         url += "&LogDatetimeDevice=" + URLEncoder.encode(DateTimeHelper.getDate()+" "+DateTimeHelper.getTime());
 
+
         Log.e(TAG, "Url :" + url);
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
