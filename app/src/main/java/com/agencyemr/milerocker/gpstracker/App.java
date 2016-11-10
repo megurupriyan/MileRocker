@@ -8,8 +8,6 @@ import android.support.multidex.MultiDex;
 import com.agencyemr.milerocker.gpstracker.models.datamodels.DaoMaster;
 import com.agencyemr.milerocker.gpstracker.models.datamodels.DaoSession;
 
-import com.crashlytics.android.Crashlytics;
-import io.fabric.sdk.android.Fabric;
 import org.greenrobot.greendao.database.Database;
 
 /**
@@ -28,7 +26,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Fabric.with(this, new Crashlytics());
+//        Fabric.with(this, new Crashlytics());
 
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, ENCRYPTED ? "milerocker-db-encrypted" : "milerocker-db");
         Database db = ENCRYPTED ? helper.getEncryptedWritableDb("super-secret") : helper.getWritableDb();

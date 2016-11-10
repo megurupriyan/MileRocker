@@ -1,7 +1,5 @@
 package com.agencyemr.milerocker.gpstracker;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
@@ -219,7 +216,7 @@ public class LocationUpdateService extends Service implements
         url += "&ModifiedUser=" + locationTracker.getModifiedUserId();
         url += "&StartLocationName=" + URLEncoder.encode(locationTracker.getStartLocationName());
         url += "&DeviceID=" + URLEncoder.encode(locationTracker.getImei());
-        url += "&LogDatetimeDevice=" + URLEncoder.encode(DateTimeHelper.getDate()+" "+DateTimeHelper.getTime());
+        url += "&LogDatetimeDevice=" + URLEncoder.encode(DateTimeHelper.getDate() + " " + DateTimeHelper.getTime());
 
 
         Log.e(TAG, "Url :" + url);
@@ -346,8 +343,9 @@ public class LocationUpdateService extends Service implements
                         try {
                             // Show the dialog by calling startResolutionForResult(),
                             // and check the result in onActivityResult().
-                            status.startResolutionForResult(
-                                    ((App) getApplication()).getCurrentActivity(), 1000);
+                            if (((App) getApplication()).getCurrentActivity() != null)
+                                status.startResolutionForResult(
+                                        ((App) getApplication()).getCurrentActivity(), 1000);
                         } catch (IntentSender.SendIntentException e) {
                             // Ignore the error.
                         }
